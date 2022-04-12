@@ -6,3 +6,7 @@
 .employees {
   list-style: none;
 }
+
+form input {
+  margin-bottom: 10px;
+}

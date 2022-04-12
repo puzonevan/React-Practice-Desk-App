@@ -35,9 +35,25 @@ export default function App() {
   ];
 
   const [employees, setEmployees] = useState(basicEmployees);
+  const [employee, setEmployee] = useState({
+    name: "",
+    phone: "",
+    email: ""
+  });
 
-  const addEmployee = (employee) => {
+  const addEmployee = (e) => {
+    e.preventDefault();
     setEmployees([...employees, employee]);
+  };
+
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setEmployee({
+      ...employee,
+      [name]: value
+    });
+    console.log(employee);
   };
 
   return (
@@ -55,8 +71,36 @@ export default function App() {
         })}
       </ul>
 
-      <form></form>
-      <Button variant="outlined">Add Employee</Button>
+      <form onSubmit={addEmployee}>
+        <TextField
+          variant="outlined"
+          name="name"
+          label="Employee Name"
+          style={{ marginBottom: 10 }}
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          variant="outlined"
+          name="phone"
+          label="Employee Number"
+          style={{ marginBottom: 10 }}
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          variant="outlined"
+          name="email"
+          label="Employee Email"
+          style={{ marginBottom: 10 }}
+          onChange={handleInputChange}
+        />
+        <br />
+
+        <Button variant="outlined" type="submit">
+          Add Employee
+        </Button>
+      </form>
     </div>
   );
 }
